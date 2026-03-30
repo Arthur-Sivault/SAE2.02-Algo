@@ -49,3 +49,25 @@ class NoeudBinaire:
     
     def __str__(self):
         return
+    
+    def parcours_prefixe(self):
+        if self.est_vide():
+            return []
+        g = self.gauche.parcours_prefixe() if self.gauche else []
+        d = self.droit.parcours_prefixe() if self.droit else []
+        return [self.valeur] + g + d
+    
+    def parcours_infixe(self):
+        if self.est_vide():
+            return []
+        g = self.gauche.parcours_infixe() if self.gauche else []
+        d = self.droit.parcours_infixe() if self.droit else []
+        return g + [self.valeur] + d
+    
+    def parcours_suffixe(self):
+        if self.est_vide():
+            return []
+        g = self.gauche.parcours_suffixe() if self.gauche else []
+        d = self.droit.parcours_suffixe() if self.droit else []
+        return g + d + [self.valeur]
+    
