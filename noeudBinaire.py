@@ -1,5 +1,4 @@
 class NoeudBinaire:
-
     def __init__(self, val, g=None, d=None):
         assert type(val) == str, "La valeur doit être une chaîne de caractères"
         if g!= None: assert isinstance(g, NoeudBinaire), "La racine doit être une instance de la classe NoeudBinaire"
@@ -47,3 +46,6 @@ class NoeudBinaire:
         hauteur_g = self.gauche.hauteur() if self.gauche else 0
         hauteur_d = self.droit.hauteur() if self.droit else 0
         return 1 + max(hauteur_g, hauteur_d)
+    
+    def __str__(self):
+        return
