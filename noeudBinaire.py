@@ -37,3 +37,6 @@ class NoeudBinaire:
     
     def possede_droit(self):
         return self.droit is not None
+    
+    def est_feuille(self):
+        return (not self.est_vide() and self.gauche is None and self.droit is None)
