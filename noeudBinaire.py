@@ -40,3 +40,10 @@ class NoeudBinaire:
     
     def est_feuille(self):
         return (not self.est_vide() and self.gauche is None and self.droit is None)
+    
+    def hauteur(self):
+        if self.est_vide():
+            return 0
+        hauteur_g = self.gauche.hauteur() if self.gauche else 0
+        hauteur_d = self.droit.hauteur() if self.droit else 0
+        return 1 + max(hauteur_g, hauteur_d)
