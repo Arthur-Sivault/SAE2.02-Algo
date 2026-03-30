@@ -31,4 +31,9 @@ class NoeudBinaire:
     
     def est_vide(self):
         return self.valeur is None
+     
+    def possede_gauche(self):
+        return self.gauche is not None
     
+    def possede_droit(self):
+        return self.droit is not None
