@@ -29,3 +29,6 @@ class NoeudBinaire:
         assert isinstance(d, NoeudBinaire), "La racine doit être une instance de la classe NoeudBinaire"
         self.droit = d
     
+    def est_vide(self):
+        return self.valeur is None
+    
