@@ -71,4 +71,3 @@ class NoeudBinaire:
         d = self.droit.parcours_suffixe() if self.droit else []
         return g + d + [self.valeur]
 
-print('test')
