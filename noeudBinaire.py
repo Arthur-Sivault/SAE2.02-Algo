@@ -54,15 +54,17 @@ class NoeudBinaire:
 
     def _generer_affichage(self, niveau):
         if self.est_vide(): return ""
+        if niveau == 0 :
+            res = str(self._valeur) + "\n"
         else:
-            res = "    " * niveau + "|-->" + str(self._valeur) + "\n"
-            if self.possede_gauche():
+            res = "    " * (niveau-1) + "|-->" + str(self._valeur) + "\n"
+        if self.possede_gauche():
                 res += self._gauche._generer_affichage(niveau +1)
-            if self.possede_droit():
+        if self.possede_droit():
                 res += self._droit._generer_affichage(niveau +1)
-            return res
+        return res
 
-    
+
     def parcours_prefixe(self):
         if self.est_vide():
             return []
@@ -100,3 +102,19 @@ class NoeudBinaire:
                 file.append(noeud.get_droit())
         return res
 
+g = NoeudBinaire('G'
+, None, None) # Arbre de valeur 'G', sans sous-arbre (feuille)
+# Arbre de valeur 'F'. Sous-arbre gauche : g. Pas sous-arbre droit.
+f = NoeudBinaire('F', g, None)
+# Arbre de valeur 'E'. Pas de sous-arbre gauche. Sous-arbre droit : f
+e = NoeudBinaire('E'
+, None, f)
+d = NoeudBinaire('D'
+, None, None) # Arbre de valeur 'D', sans sous-arbres (feuille)
+c = NoeudBinaire('C'
+, None, None) # Arbre de valeur 'C', sans sous-arbres (feuille)
+# Arbre de valeur 'B', sous-arbre gauche : c. Sous-arbre droit : d.
+b = NoeudBinaire('B', c, d)
+# Arbre de valeur 'A', sous-arbre gauche : b. Sous-arbre droit : e.
+a = NoeudBinaire('A', b, e)
+print(a)
