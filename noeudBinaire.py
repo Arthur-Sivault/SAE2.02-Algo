@@ -1,50 +1,49 @@
 class NoeudBinaire:
-    def __init__(self, val, g=None, d=None):
-        assert type(val) == str, "La valeur doit être une chaîne de caractères"
+
+    def __init__(self, val=None, g=None, d=None):
         if g!= None: assert isinstance(g, NoeudBinaire), "La racine doit être une instance de la classe NoeudBinaire"
-        elif d!= None: assert isinstance(d, NoeudBinaire), "La racine doit être une instance de la classe NoeudBinaire"
-        self.valeur = val
-        self.gauche = g
-        self.droit = d
+        if d!= None: assert isinstance(d, NoeudBinaire), "La racine doit être une instance de la classe NoeudBinaire"
+        self._valeur = val
+        self._gauche = g
+        self._droit = d
     
     def get_valeur(self):
-        return self.valeur
+        return self._valeur
     
     def get_gauche(self):
-        return self.gauche
+        return self._gauche
     
     def get_droit(self):
-        return self.droit
+        return self._droit
     
     def set_valeur(self, val):
-        assert type(val) == str, "La valeur doit être une chaîne de caractères"
-        self.valeur = val
+        self._valeur = val
     
     def set_gauche(self, g):
         assert isinstance(g, NoeudBinaire), "La racine doit être une instance de la classe NoeudBinaire"
-        self.gauche = g
+        self._gauche = g
     
     def set_droit(self, d):
         assert isinstance(d, NoeudBinaire), "La racine doit être une instance de la classe NoeudBinaire"
-        self.droit = d
+        self._droit = d
     
     def est_vide(self):
-        return self.valeur is None
+        return self._valeur is None and self._gauche is None and self._droit is None 
      
     def possede_gauche(self):
-        return self.gauche is not None
+        return self._gauche is not None
     
     def possede_droit(self):
-        return self.droit is not None
+        return self._droit is not None
     
     def est_feuille(self):
-        return (not self.est_vide() and self.gauche is None and self.droit is None)
+        return (not self.est_vide() and self._gauche is None and self._droit is None)
     
     def hauteur(self):
         if self.est_vide():
             return 0
-        hauteur_g = self.gauche.hauteur() if self.gauche else 0
-        hauteur_d = self.droit.hauteur() if self.droit else 0
+        hauteur_g = self._gauche.hauteur() if self._gauche else 0
+        hauteur_d = self._droit.hauteur() if self._droit else 0
         return 1 + max(hauteur_g, hauteur_d)
     
     def __str__(self):
@@ -53,21 +52,35 @@ class NoeudBinaire:
     def parcours_prefixe(self):
         if self.est_vide():
             return []
-        g = self.gauche.parcours_prefixe() if self.gauche else []
-        d = self.droit.parcours_prefixe() if self.droit else []
-        return [self.valeur] + g + d
+        g = self._gauche.parcours_prefixe() if self._gauche else []
+        d = self._droit.parcours_prefixe() if self._droit else []
+        return [self._valeur] + g + d
     
     def parcours_infixe(self):
         if self.est_vide():
             return []
-        g = self.gauche.parcours_infixe() if self.gauche else []
-        d = self.droit.parcours_infixe() if self.droit else []
-        return g + [self.valeur] + d
+        g = self._gauche.parcours_infixe() if self._gauche else []
+        d = self._droit.parcours_infixe() if self._droit else []
+        return g + [self._valeur] + d
     
     def parcours_suffixe(self):
         if self.est_vide():
             return []
-        g = self.gauche.parcours_suffixe() if self.gauche else []
-        d = self.droit.parcours_suffixe() if self.droit else []
-        return g + d + [self.valeur]
+        g = self._gauche.parcours_suffixe() if self._gauche else []
+        d = self._droit.parcours_suffixe() if self._droit else []
+        return g + d + [self._valeur]
     
+g = NoeudBinaire('G', None, None) # Arbre de valeur 'G', sans sous-arbre (feuille)
+# Arbre de valeur 'F'. Sous-arbre gauche : g. Pas sous-arbre droit.
+f = NoeudBinaire('F', g, None)
+# Arbre de valeur 'E'. Pas de sous-arbre gauche. Sous-arbre droit : f
+e = NoeudBinaire('E', None, f)
+d = NoeudBinaire('D', None, None) # Arbre de valeur 'D', sans sous-arbres (feuille)
+c = NoeudBinaire('C', None, None) # Arbre de valeur 'C', sans sous-arbres (feuille)
+# Arbre de valeur 'B', sous-arbre gauche : c. Sous-arbre droit : d.
+b = NoeudBinaire('B', c, d)
+# Arbre de valeur 'A', sous-arbre gauche : b. Sous-arbre droit : e.
+a = NoeudBinaire('A', b, e)
+    
+arbre =a 
+print(arbre.parcours_prefixe())
