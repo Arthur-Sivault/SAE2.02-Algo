@@ -50,7 +50,32 @@ class NoeudBinaire:
         return 1 + max(hauteur_g, hauteur_d)
     
     def __str__(self):
-        return
+        return self.affichage([], True)
+    
+
+    def affichage(self, traces, est_dernier):
+        if self.est_vide():
+            return ""
+        res = ""
+        
+        for t in traces[:-1]:
+            res += "|   " if t else "    "
+        
+        if traces:
+            res += "|---> "
+        res += str(self._valeur) + "\n"
+
+        enfants = []
+        if self._gauche:
+            enfants.append(self._gauche)
+        if self._droit:
+            enfants.append(self._droit)
+        
+        for i, enfant in enumerate(enfants):
+            dernier = (i == len(enfants) - 1)
+            res += enfant.affichage(traces + [not dernier], dernier)
+        
+        return res
     
     def parcours_prefixe(self):
         if self.est_vide():
