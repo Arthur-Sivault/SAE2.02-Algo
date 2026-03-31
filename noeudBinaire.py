@@ -1,6 +1,3 @@
-from collections import deque
-
-
 class NoeudBinaire:
 
     def __init__(self, val=None, g=None, d=None):
