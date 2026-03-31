@@ -50,7 +50,18 @@ class NoeudBinaire:
         return 1 + max(hauteur_g, hauteur_d)
     
     def __str__(self):
-        return
+        return self._generer_affichage(0)
+
+    def _generer_affichage(self, niveau):
+        if self.est_vide(): return ""
+        else:
+            res = "    " * niveau + "|-->" + str(self._valeur) + "\n"
+            if self.possede_gauche():
+                res += self._gauche._generer_affichage(niveau +1)
+            if self.possede_droit():
+                res += self._droit._generer_affichage(niveau +1)
+            return res
+
     
     def parcours_prefixe(self):
         if self.est_vide():
@@ -76,7 +87,6 @@ class NoeudBinaire:
     def parcours_largeur(self):
         if self.est_vide():
             return []
-    
         res = []
         file = [self]
         
