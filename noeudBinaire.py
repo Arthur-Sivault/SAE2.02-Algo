@@ -84,3 +84,7 @@ a = NoeudBinaire('A', b, e)
     
 arbre =a 
 print(arbre.parcours_prefixe())
+        g = self.gauche.parcours_suffixe() if self.gauche else []
+        d = self.droit.parcours_suffixe() if self.droit else []
+        return g + d + [self.valeur]
+
