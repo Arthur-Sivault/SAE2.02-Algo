@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class NoeudBinaire:
 
     def __init__(self, val=None, g=None, d=None):
@@ -66,7 +69,24 @@ class NoeudBinaire:
     def parcours_suffixe(self):
         if self.est_vide():
             return []
-        g = self.gauche.parcours_suffixe() if self.gauche else []
-        d = self.droit.parcours_suffixe() if self.droit else []
-        return g + d + [self.valeur]
+        g = self._gauche.parcours_suffixe() if self._gauche else []
+        d = self._droit.parcours_suffixe() if self._droit else []
+        return g + d + [self._valeur]
     
+    def parcours_largeur(self):
+        if self.est_vide():
+            return []
+    
+        res = []
+        file = [self]
+        
+        while file:
+            noeud = file.pop(0)
+            res.append(noeud.get_valeur())
+            
+            if noeud.possede_gauche():
+                file.append(noeud.get_gauche())
+            if noeud.possede_droit():
+                file.append(noeud.get_droit())
+        return res
+
