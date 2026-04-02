@@ -21,7 +21,7 @@ class NoeudHuffman(NoeudBinaire):
 
     # Méthode permettant de construire l'arbre de Huffman à partir d'une chaine de caractères 
     def construire_arbre_huffman(self, caracteres):
-        # On commence par créer la liste L dont les éléments sont les couples (caractere, effectif du caractere)
+        # On commence par créer le dictionnaire dont les éléments sont les couples (caractere, effectif du caractere)
         effectif_dictionnaire = {}                    
         for c in caracteres:
             if c in effectif_dictionnaire:
@@ -29,8 +29,14 @@ class NoeudHuffman(NoeudBinaire):
             else:
                 effectif_dictionnaire[c] = 1
 
+
+        # On veut une liste donc on met les éléments du dictionnaire dans une liste L
         L = []
         for c in effectif_dictionnaire:
             L.append((c, effectif_dictionnaire[c]))
-
+        L = sorted(L, key=lambda x: x[1], reverse=True) # on trie la liste L par ordre décroissant d'effectif
         return L
+
+
+    
+        
