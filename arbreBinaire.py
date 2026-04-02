@@ -2,8 +2,8 @@ class NoeudBinaire:
 
     def __init__(self, val=None, g=None, d=None):
         """Initialise un noeud binaire avec une valeur et des sous-arbres gauche et droit. Si rien n'est précisé, la valeur par défault en None"""
-        if g!= None: assert isinstance(g, NoeudBinaire), "La racine doit être une instance de la classe NoeudBinaire"
-        if d!= None: assert isinstance(d, NoeudBinaire), "La racine doit être une instance de la classe NoeudBinaire"
+        if g!= None: assert isinstance(g, NoeudBinaire), "Le sous-arbre gauche doit être une instance de la classe NoeudBinaire"
+        if d!= None: assert isinstance(d, NoeudBinaire), "Le sous-arbre droit doit être une instance de la classe NoeudBinaire"
         self._valeur = val
         self._gauche = g
         self._droit = d
@@ -26,12 +26,12 @@ class NoeudBinaire:
     
     def set_gauche(self, g):
         """Modifie le sous-arbre gauche."""
-        assert isinstance(g, NoeudBinaire), "La racine doit être une instance de la classe NoeudBinaire"
+        assert isinstance(g, NoeudBinaire), "Le sous-arbre gauche doit être une instance de la classe NoeudBinaire"
         self._gauche = g
     
     def set_droit(self, d):
         """Modifie le sous-arbre droit."""
-        assert isinstance(d, NoeudBinaire), "La racine doit être une instance de la classe NoeudBinaire"
+        assert isinstance(d, NoeudBinaire), "Le sous-arbre droit doit être une instance de la classe NoeudBinaire"
         self._droit = d
     
     def est_vide(self):
@@ -128,20 +128,3 @@ class NoeudBinaire:
             if noeud.possede_droit():
                 file.append(noeud.get_droit())
         return res
-
-g = NoeudBinaire('G', None, None) # Arbre de valeur 'G', sans sous-arbre (feuille)
-# Arbre de valeur 'F'. Sous-arbre gauche : g. Pas sous-arbre droit.
-f = NoeudBinaire('F', g, None)
-# Arbre de valeur 'E'. Pas de sous-arbre gauche. Sous-arbre droit : f
-e = NoeudBinaire('E', None, f)
-# Arbre de valeur 'D', sans sous-arbres (feuille)
-d = NoeudBinaire('D', None, None)
-# Arbre de valeur 'C', sans sous-arbres (feuille)
-c = NoeudBinaire('C', None, None)
-# Arbre de valeur 'B', sous-arbre gauche : c. Sous-arbre droit : d.
-b = NoeudBinaire('B', c, d)
-# Arbre de valeur 'A', sous-arbre gauche : b. Sous-arbre droit : e.
-a = NoeudBinaire('A', b, e)
-mon_arbre = a
-
-print(mon_arbre)
