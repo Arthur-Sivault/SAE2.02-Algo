@@ -59,9 +59,12 @@ class NoeudBinaire:
         return 1 + max(hauteur_g, hauteur_d)
     
     def __str__(self):
+        """Retourne la représentation textuelle de l'arbre binaire en utilisant _generer_affichage"""
         return self._generer_affichage(0)
 
     def _generer_affichage(self, niveau):
+        """Méthode qui génère la représentation textuelle de l'arbre.Chaque noeud est affiché avec une indentation 
+        proportionnelle à son niveau dans l'arbre. Le paramètre niveau indique la profondeur du noeud courant 0 est pour la racine"""
         if self.est_vide(): return ""
         if niveau == 0 :
             res = str(self._valeur) + "\n"
