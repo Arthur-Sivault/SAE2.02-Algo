@@ -59,34 +59,21 @@ class NoeudBinaire:
         return 1 + max(hauteur_g, hauteur_d)
     
     def __str__(self):
-        """Affiche l'arbre binaire en console"""
-        return self.affichage([], True)
-    
-    def affichage(self, traces, est_dernier):
-        """Retourne une chaîne de caractères représentant l'arbre binaire"""
-        if self.est_vide():
-            return ""
-        res = ""
-        
-        for t in traces[:-1]:
-            res += "|     " if t else "      "
-        
-        if traces:
-            res += "|---> "
-        res += str(self._valeur) + "\n"
+        return self._generer_affichage(0)
 
-        enfants = []
-        if self._gauche:
-            enfants.append(self._gauche)
-        if self._droit:
-            enfants.append(self._droit)
-        
-        for i, enfant in enumerate(enfants):
-            dernier = (i == len(enfants) - 1)
-            res += enfant.affichage(traces + [not dernier], dernier)
-        
+    def _generer_affichage(self, niveau):
+        if self.est_vide(): return ""
+        if niveau == 0 :
+            res = str(self._valeur) + "\n"
+        else:
+            res = "    " * (niveau-1) + "|-->" + str(self._valeur) + "\n"
+        if self.possede_gauche():
+                res += self._gauche._generer_affichage(niveau +1)
+        if self.possede_droit():
+                res += self._droit._generer_affichage(niveau +1)
         return res
-    
+
+
     def parcours_prefixe(self):
         """Retourne la liste des valeurs du parcours préfixe de l'arbre."""
         if self.est_vide():
@@ -115,7 +102,6 @@ class NoeudBinaire:
         """Retourne la liste des valeurs du parcours en largeur de l'arbre."""
         if self.est_vide():
             return []
-    
         res = []
         file = [self]
         
