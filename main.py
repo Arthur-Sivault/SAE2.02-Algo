@@ -1,5 +1,5 @@
-from arbreBinaire import NoeudBinaire
-from huffman import NoeudHuffman
+from NoeudBinaire import NoeudBinaire
+from NoeudHuffman import NoeudHuffman
 """
 g = NoeudBinaire('G', None, None) # Arbre de valeur 'G', sans sous-arbre (feuille)
 # Arbre de valeur 'F'. Sous-arbre gauche : g. Pas sous-arbre droit.

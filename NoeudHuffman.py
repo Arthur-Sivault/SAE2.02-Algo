@@ -1,4 +1,4 @@
-from arbreBinaire import NoeudBinaire
+from NoeudBinaire import NoeudBinaire
 
 class NoeudHuffman(NoeudBinaire):
     
