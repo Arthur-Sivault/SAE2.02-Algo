@@ -88,3 +88,4 @@ class NoeudHuffman(NoeudBinaire):
                 chaine_decodee += noeud_courant.get_valeur()[0]
                 noeud_courant = arbre
         return chaine_decodee
+
