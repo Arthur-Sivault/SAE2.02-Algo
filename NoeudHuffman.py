@@ -64,3 +64,28 @@ class NoeudHuffman(NoeudBinaire):
             self.get_droit().generer_codes(code + "1", dico)
 
         return dico
+    @staticmethod
+    def compression(chaine, codes):
+        """Compresse une chaîne de caractères en utilisant les codes de Huffman générés à partir de l'arbre de Huffman."""
+        res = ""
+
+        for c in chaine:
+            res += codes[c]
+        return res
+
+    @staticmethod
+    def decompression(chaine_compressee, arbre):
+        """Décompresse une chaîne de caractères compressée en utilisant l'arbre de Huffman."""
+        chaine_decodee = ""
+        noeud_courant = arbre
+
+        for val in chaine_compressee:
+            if val == "0":
+                noeud_courant = noeud_courant.get_gauche()
+            else :
+                noeud_courant = noeud_courant.get_droit()
+            
+            if noeud_courant.est_feuille():
+                chaine_decodee += noeud_courant.get_valeur()[0]
+                noeud_courant = arbre
+        return chaine_decodee
