@@ -29,10 +29,10 @@ L'algorithme attribue des codes binaires **courts** aux caractères **fréquents
 
 ## Structure du projet
 
-├── input/               # Fichiers texte à compresser
-├── NoeudBinaire.py      # Arbre binaire générique
-├── NoeudHuffman.py      # Arbre de Huffman + compression
-├── main.py              # Point d'entrée du programme
+├── input/               # Fichiers texte à compresser <br>
+├── NoeudBinaire.py      # Arbre binaire générique <br>
+├── NoeudHuffman.py      # Arbre de Huffman + compression <br>
+├── main.py              # Point d'entrée du programme <br>
 └── README.md
 
 ### `NoeudBinaire.py`
@@ -87,6 +87,9 @@ pip install unidecode
 ---
 
 ## Auteur
-
+Valentin CARPINTEIRO-LERICQ <br>
+Assane DIEBATE <br>
+Nohlan MOMPEROUSSE <br>
+Arthur SIVAULT--LE MORELLEC <br>
 Projet réalisé dans le cadre de la SAÉ 2.02  
 BUT Informatique – IUT de Créteil-Vitry

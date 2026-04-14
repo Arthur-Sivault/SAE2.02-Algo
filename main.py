@@ -1,27 +1,44 @@
-from NoeudBinaire import NoeudBinaire
 from NoeudHuffman import NoeudHuffman
+from unidecode import unidecode
+import sys
+import os
 
-g = NoeudBinaire('G', None, None) # Arbre de valeur 'G', sans sous-arbre (feuille)
-# Arbre de valeur 'F'. Sous-arbre gauche : g. Pas sous-arbre droit.
-f = NoeudBinaire('F', g, None)
-# Arbre de valeur 'E'. Pas de sous-arbre gauche. Sous-arbre droit : f
-e = NoeudBinaire('E', None, f)
-# Arbre de valeur 'D', sans sous-arbres (feuille)
-d = NoeudBinaire('D', None, None)
-# Arbre de valeur 'C', sans sous-arbres (feuille)
-c = NoeudBinaire('C', None, None)
-# Arbre de valeur 'B', sous-arbre gauche : c. Sous-arbre droit : d.
-b = NoeudBinaire('B', c, d)
-# Arbre de valeur 'A', sous-arbre gauche : b. Sous-arbre droit : e.
-a = NoeudBinaire('A', b, e)
-mon_arbre = a
-print("Affichage NoeudBinaire : ")
-print(mon_arbre)
+dossier_input = sys.argv[1]
 
-s = "bonjourbonsoir"
-print("Affichage NoeudHuffman : ")
-arbre = NoeudHuffman.construire_arbre(s)
-print(arbre)
+#Parcours des fichiers du dossier input
+for fichier in os.listdir(dossier_input):
+    if fichier.endswith(".txt"):
+        f_path = os.path.join(dossier_input, fichier)
+        with open(f_path, 'r', encoding='utf-8') as file:
+            contenuTxt = file.read()
+            contenuTxt = unidecode(contenuTxt)
 
-codes = arbre.generer_codes()
-print(codes)
+            print(f"\nFichier {fichier} chargé.")
+
+            #Conversion en binaire
+            binaire_initial = NoeudHuffman.chaine_vers_binaire(contenuTxt)
+
+            #Construction de l'arbre de Huffman et compression
+            arbre = NoeudHuffman.construire_arbre(contenuTxt)
+            codes = arbre.generer_codes()
+            chaine_compressee = NoeudHuffman.compression(contenuTxt, codes)
+
+            
+            # Affichage
+            print("Binaire ASCII :", binaire_initial[:100], "...")
+            print("Compressé :", chaine_compressee[:100], "...")
+
+            # Tailles de la chaine initiale et compressée
+            taille_initiale = len(binaire_initial)
+            taille_compressee = len(chaine_compressee)
+
+            # Calcul et affichage du taux de compression
+            taux = (1 - taille_compressee / taille_initiale) * 100
+
+            print(f"Taille initiale : {taille_initiale} bits")
+            print(f"Taille compressée : {taille_compressee} bits")
+            print(f"Taux : {taux:.2f}%")
+
+            # Décompression et vérification
+            decomp = NoeudHuffman.decompression(chaine_compressee, arbre)
+            print("Décompression OK" if decomp == contenuTxt else "Erreur")
