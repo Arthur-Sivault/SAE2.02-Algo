@@ -7,6 +7,7 @@ class NoeudHuffman(NoeudBinaire):
     
     @staticmethod
     def frequences_lettres(chaine):
+        """retourne la fréquence de chaque lettre"""
         freq = {}
         for c in chaine:
             if c in freq:
@@ -47,22 +48,22 @@ class NoeudHuffman(NoeudBinaire):
         return noeuds[0]
 
     def generer_codes(self, code="", dico=None):
-            if dico is None:
-                dico = {}
+        """ Parcourt l'arbre de manière récursive pour générer les codes binaires de chaque caractère (feuille)"""
+        if dico is None:
+            dico = {}
 
-            if self.est_feuille():
-                caractere = self.get_valeur()[0]
-                dico[caractere] = code
-                return dico
-
-            if self.possede_gauche():
-                self.get_gauche().generer_codes(code + "0", dico)
-
-            if self.possede_droit():
-                self.get_droit().generer_codes(code + "1", dico)
-
+        if self.est_feuille():
+            caractere = self.get_valeur()[0]
+            dico[caractere] = code
             return dico
+        
+        if self.possede_gauche():
+            self.get_gauche().generer_codes(code + "0", dico)
 
+        if self.possede_droit():
+            self.get_droit().generer_codes(code + "1", dico)
+
+        return dico
     @staticmethod
     def compression(chaine, codes):
         """Compresse une chaîne de caractères en utilisant les codes de Huffman générés à partir de l'arbre de Huffman."""
