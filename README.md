@@ -87,9 +87,9 @@ pip install unidecode
 ---
 
 ## Auteur
-Valentin CARPINTEIRO-LERICQ
-Assane DIEBATE
-Nohlan MOMPEROUSSE
-Arthur SIVAULT--LE MORELLEC
+Valentin CARPINTEIRO-LERICQ <br>
+Assane DIEBATE <br>
+Nohlan MOMPEROUSSE <br>
+Arthur SIVAULT--LE MORELLEC <br>
 Projet réalisé dans le cadre de la SAÉ 2.02  
 BUT Informatique – IUT de Créteil-Vitry
