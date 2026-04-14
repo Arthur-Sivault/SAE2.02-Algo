@@ -2,6 +2,11 @@
 
 Implémentation en Python de l'algorithme de **codage de Huffman**, permettant la compression et décompression de fichiers texte sans perte de données.
 
+## Exécution du projet
+```bash
+python3 main.py input/
+```
+
 ## Fonctionnalités
 - Lecture de fichiers txt
 - Construction d'un arbre de Huffman à partir des fréquences de caractères
