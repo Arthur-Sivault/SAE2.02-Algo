@@ -4,6 +4,10 @@ BUT Informatique, IUT de Créteil-Vitry
 
 Implémentation en Python de l'algorithme de **codage de Huffman**, permettant la compression et décompression de fichiers texte sans perte de données.
 
+## Exécution du projet
+```bash
+python3 main.py input/
+```
 ## Comment le projet marche ?
 Le programme se lance depuis le terminal en lui passant un dossier contenant des fichiers `.txt`. Il parcourt chaque fichier, analyse la fréquence d'apparition de chaque caractère, puis construit un arbre de Huffman pour générer des codes binaires optimisés. Le texte est ensuite compressé caractère par caractère en utilisant ces codes. À la fin, le programme affiche la taille du texte avant et après compression, ainsi que le gain obtenu. Une décompression est également effectuée pour vérifier que le texte reconstruit est identique à l'original.
 
