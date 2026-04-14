@@ -89,3 +89,11 @@ class NoeudHuffman(NoeudBinaire):
                 chaine_decodee += noeud_courant.get_valeur()[0]
                 noeud_courant = arbre
         return chaine_decodee
+        
+    @staticmethod
+    def chaine_vers_binaire(chaine):
+        """Convertit une chaîne de caractères en une chaîne binaire représentant les codes ASCII de chaque caractère."""
+        res = ""
+        for c in chaine:
+            res += format(ord(c), '08b')
+        return res
