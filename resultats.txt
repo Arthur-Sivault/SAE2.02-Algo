@@ -1,0 +1,7 @@
+Résultats des taux de compression :
+
+aLaRechercheDuTempsPerdu.txt : 46.70%
+leCid.txt : 45.61%
+leSavetierEtLeFinancier.txt : 43.68%
+lesMiserables.txt : 44.91%
+marcheTrain.txt : 54.44%
